@@ -1,0 +1,19 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Estos son los primeros pasos para bajar y compilar el proyecto.
+
+Necesitas tener instalado esto en tu compu:
+
+subversion:
+
+> sudo apt-get install subversion
+
+maven:
+
+> sudo apt-get install maven
+
+= Detalles =
+
+* Aqui deberiamos poner un link para las instrucciones de como hacer el deploy de la aplicacion.
