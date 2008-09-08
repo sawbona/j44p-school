@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mx.com.j44p</groupId>
+  <artifactId>school.web</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>School - Web</name>
+  <parent>
+    <groupId>mx.com.j44p</groupId>
+    <artifactId>school</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <dependencies>
+    <dependency>
+      <groupId>mx.com.j44p</groupId>
+      <artifactId>school.logica</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tapestry</groupId>
+      <artifactId>tapestry-framework</artifactId>
+      <version>4.1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tapestry</groupId>
+      <artifactId>tapestry-annotations</artifactId>
+      <version>4.1.5</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>school.web</finalName>
+  </build>
+  <properties>
+    <netbeans.hint.deploy.server>J2EE</netbeans.hint.deploy.server>
+  </properties>
+</project>

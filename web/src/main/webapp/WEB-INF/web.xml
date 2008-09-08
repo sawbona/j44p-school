@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <display-name>School Application</display-name>
+  <!--
+  <filter>
+    <filter-name>redirect</filter-name>
+    <filter-class>org.apache.tapestry.RedirectFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>redirect</filter-name>
+    <url-pattern>/</url-pattern>
+  </filter-mapping>
+  -->
+  <servlet>
+    <servlet-name>school-servlet</servlet-name>
+    <servlet-class>org.apache.tapestry.ApplicationServlet</servlet-class>
+    <!-- Set the load order -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>/app</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping><servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>*.external</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>*.direct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>*.sdirect</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>/assets/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>school-servlet</servlet-name>
+    <url-pattern>*.svc</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>app</welcome-file>
+  </welcome-file-list>
+</web-app>
