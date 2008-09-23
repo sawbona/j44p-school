@@ -4,13 +4,28 @@
 "http://jakarta.apache.org/tapestry/dtd/Tapestry_4_0.dtd">
 
 <page-specification class="mx.com.j44p.school.web.Home">
+  <!--
+    Componente TextField para almacenar el usuario.
+  -->
   <component id="usernameTextField" type="TextField">
     <binding name="value" value="username"/>
   </component>
+  <!--
+    Componente TextField para almacenar el password.
+  -->
   <component id="passwordTextField" type="TextField">
     <binding name="value" value="password"/>
     <binding name="hidden" value="true"/>
   </component>
+  <!--
+    Link a la pagina de Administracion de usuarios.
+  -->
+  <component id="administraUsuariosDirectLink" type="DirectLink">
+    <binding name="listener" value="listener:onAdministraUsuariosDirectLink"/>
+  </component>
+  <!--
+    Componente Form de la pagina.
+  -->
   <component id="iniciaForm" type="Form">
     <binding name="listener" value="listener:onInicia"/>
   </component>

@@ -101,4 +101,9 @@ public class Pregunta extends AbstractEntidad{
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
     }
+
+    @Override
+    public String toString() {
+        return pregunta;
+    }
 }

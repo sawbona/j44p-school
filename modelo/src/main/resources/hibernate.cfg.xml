@@ -21,12 +21,15 @@
     <property name="connection.username" >schooluser</property>
     <property name="connection.password" >schoolpassword</property>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-    <property name="hibernate.show_sql">false</property>
+    <property name="hibernate.show_sql">true</property>
     <!--
-    <mapping class="mx.com.j44p.school.modelo.Opcion"/>
     -->
-    <mapping class="mx.com.j44p.school.modelo.Usuario"/>
+    <mapping class="mx.com.j44p.school.modelo.mapped.Permiso"/>
+    <mapping class="mx.com.j44p.school.modelo.mapped.UsuarioSimple"/>
+    <mapping class="mx.com.j44p.school.modelo.mapped.PersonaSimple"/>
+    <mapping class="mx.com.j44p.school.modelo.Profesor"/>
     <mapping class="mx.com.j44p.school.modelo.Alumno"/>
+    <mapping class="mx.com.j44p.school.modelo.Padre"/>
     <mapping class="mx.com.j44p.school.modelo.Pregunta"/>
     <mapping class="mx.com.j44p.school.modelo.Seccion"/>
     <mapping class="mx.com.j44p.school.modelo.Examen"/>

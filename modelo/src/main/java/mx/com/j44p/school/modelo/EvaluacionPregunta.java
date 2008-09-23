@@ -5,11 +5,15 @@
 
 package mx.com.j44p.school.modelo;
 
-import javax.persistence.Entity;
 import mx.com.j44p.school.modelo.mapped.AbstractEntidad;
+import javax.persistence.Entity;
 
 /**
  * Clase para representar la evaluacion de una pregunta.
+ * Ingredientes necesarios para crear un objeto de este tipo:
+ * <lo>
+ *  <li>Pregunta</li>
+ * </lo>
  * @author jaap
  */
 @Entity

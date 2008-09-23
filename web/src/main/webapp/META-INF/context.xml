@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
     Document   : context.xml
     Created on : 6 de septiembre de 2008, 09:57 PM
@@ -7,4 +6,4 @@
     Description:
         Purpose of the document follows.
 -->
-<Context path="/FirstTapestry"/>
+<Context path="/school"/>
