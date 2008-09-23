@@ -5,10 +5,6 @@
        xmlns:lang="http://www.springframework.org/schema/lang"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
-  
-  <bean id="consultaHibernate" class="mx.com.j44p.school.logica.hibernate.ConsultaHibernate">
-    <property name="hibernateTemplate" ref="hibernateTemplate"/>
-  </bean>
-  
+       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+    
 </beans>

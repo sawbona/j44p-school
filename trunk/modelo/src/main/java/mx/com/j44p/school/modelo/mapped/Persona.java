@@ -6,7 +6,7 @@
 package mx.com.j44p.school.modelo.mapped;
 
 /**
- * Clase para modelar a una persona. Esta clase debe ser extendida por todas las entidades que
+ * Clase para modelar a una persona. Esta clase debe ser extendida por todas las entidades de
  * "personas", que intervengan en el sistema.
  * @author jaap
  */

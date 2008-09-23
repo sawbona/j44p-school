@@ -13,7 +13,9 @@ import mx.com.j44p.school.modelo.mapped.AbstractEntidad;
 
 /**
  * Clase que representa la evaluacion de una seccion. Cada evaluacion de una seccion se compone
- * de una lista de evaluaciones de preguntas
+ * de una lista de evaluaciones de preguntas.
+ * Ingredientes necesarios para crear este objeto:
+ * List"EvaluacionPregunta"
  * @author jaap
  */
 @Entity

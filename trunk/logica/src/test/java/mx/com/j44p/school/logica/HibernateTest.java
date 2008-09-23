@@ -5,7 +5,12 @@
 
 package mx.com.j44p.school.logica;
 
-import mx.com.j44p.school.modelo.Usuario;
+import java.util.List;
+import mx.com.j44p.school.modelo.Alumno;
+import mx.com.j44p.school.modelo.PermisoBasico;
+import mx.com.j44p.school.modelo.Profesor;
+import mx.com.j44p.school.modelo.mapped.Permiso;
+import mx.com.j44p.school.modelo.mapped.Usuario;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -42,15 +47,24 @@ public class HibernateTest extends SchoolBaseTest{
     }
     
     public void testHibernate(){
-        Usuario usuario = new Usuario();
-        usuario.setPrimerNombre("Carlos");
-        usuario.setSegundoNombre("Jacob");
-        usuario.setPrimerApellido("Lobaco");
-        usuario.setSegundoApellido("Beltran");
-        usuario.setEmail("sawbona@gmail.com");
-        usuario.setPassword("password");
-        template.saveOrUpdate(usuario);
-        System.out.println("Usuario guardado exitosamente <---------------------------------------");
-        assertTrue(true);
+        Profesor profesor = new Profesor();
+        profesor.setPrimerNombre("Carlos");
+        profesor.setSegundoNombre("Jacob");
+        profesor.setPrimerApellido("Lobaco");
+        profesor.setSegundoApellido("Beltran");
+        profesor.setUsername("jaap");
+        profesor.setPassword("ch3c4357");
+        profesor.addPermiso(PermisoBasico.ADMINISTRADOR);
+        profesor.setEmail("sawbona@gmail.com");
+        template.save(profesor);
+        Profesor busca = new Profesor();
+        profesor.setPrimerNombre("Carlos");
+        System.out.println("Usuario guardado exitosamente <---------------" +
+                "------------------------" +
+                " Buscando por usuario:");
+        for(Usuario usuario : (List<Usuario>)template.findByExample(busca.getUsuario())){
+            System.out.println(usuario);
+        }
+        
     }
 }

@@ -10,7 +10,7 @@
                 </property>
             </activation>
             <properties>
-                <netbeans.deployment.server.id>[/home/jaap/SUNWappserver]deployer:Sun:AppServer::localhost:50901</netbeans.deployment.server.id>
+                <netbeans.deployment.server.id>tomcat55:home=/usr/share/tomcat5.5</netbeans.deployment.server.id>
             </properties>
         </profile>
     </profiles>
