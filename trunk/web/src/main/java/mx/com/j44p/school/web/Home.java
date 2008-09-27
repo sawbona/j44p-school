@@ -6,7 +6,6 @@
 package mx.com.j44p.school.web;
 
 import mx.com.j44p.school.logica.Consulta;
-import mx.com.j44p.school.web.spring.SchoolSpringContext;
 import mx.com.j44p.school.modelo.Alumno;
 import mx.com.j44p.school.modelo.PermisoBasico;
 import mx.com.j44p.school.modelo.mapped.Permiso;
@@ -16,7 +15,7 @@ import mx.com.j44p.school.web.secure.AdministraUsuarios;
 import org.apache.tapestry.IPage;
 import org.apache.tapestry.annotations.InitialValue;
 import org.apache.tapestry.annotations.InjectPage;
-//import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 /**
  * Pagina Home.
@@ -24,8 +23,6 @@ import org.apache.tapestry.annotations.InjectPage;
  */
 public abstract class Home extends SchoolBasePage{
 
-//    private static final ApplicationContext contexto = SchoolSpringContext.SCHOOL_SPRING_CONTEXT;
-    
     /**
      * Referencia a la pagina Evalua.
      * @return
@@ -72,8 +69,12 @@ public abstract class Home extends SchoolBasePage{
         
         Permiso permiso = PermisoBasico.ADMINISTRADOR;
         usuario.addPermiso(permiso);
-        Consulta consulta = (Consulta) SchoolSpringContext.CONSULTA;
-        consulta.save(usuario);
+        HibernateTemplate template = (HibernateTemplate) getApplicationContext().getBean("hibernateTemplate");
+        for(String nombre: getApplicationContext().getBeanDefinitionNames()){
+            System.out.println(nombre);
+        }
+        Consulta consulta = (Consulta) getApplicationContext().getBean("consultaHibernate");
+        template.saveOrUpdate(usuario);
         evalua.setUsuario(usuario);
         return getEvaluaPage();
     }
