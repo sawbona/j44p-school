@@ -11,27 +11,27 @@
     <filter-name>redirect</filter-name>
     <url-pattern>/</url-pattern>
   </filter-mapping>
-  -->
+  <filter>
+      <filter-name>HiveMindFilter</filter-name>
+      <filter-class>org.apache.hivemind.servlet.HiveMindFilter</filter-class>
+  </filter>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:schoolModeloApplicationContext.xml
-      classpath:schoolLogicaApplicationContext.xml
-      /WEB-INF/applicationContext.xml
+      classpath:schoolModeloApplicationContext1.xml
     </param-value>
   </context-param>
+  -->
   
-    <filter>
-        <filter-name>HiveMindFilter</filter-name>
-        <filter-class>org.apache.hivemind.servlet.HiveMindFilter</filter-class>
-    </filter>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <servlet>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
     <servlet-name>school-servlet</servlet-name>
     <servlet-class>org.apache.tapestry.ApplicationServlet</servlet-class>
-    <!-- Set the load order -->
+    <!--
+    Set the load order
+    -->
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>

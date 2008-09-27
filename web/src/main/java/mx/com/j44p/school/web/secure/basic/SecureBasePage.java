@@ -12,13 +12,15 @@ import mx.com.j44p.school.web.Home;
 import mx.com.j44p.school.web.basic.SchoolBasePage;
 import org.apache.tapestry.PageRedirectException;
 import org.apache.tapestry.annotations.InjectPage;
+import org.apache.tapestry.event.PageBeginRenderListener;
+import org.apache.tapestry.event.PageEvent;
 
 /**
  * Una pagina segura que debe tener un usuario asociado para poder ser visualizada.
  * @author jaap
  */
-public abstract class SecureBasePage extends SchoolBasePage{
-
+public abstract class SecureBasePage extends SchoolBasePage implements PageBeginRenderListener{
+    
     /**
      * Referencia a la pagina Home
      * @return Una referencia a la pagina Home.
@@ -55,28 +57,11 @@ public abstract class SecureBasePage extends SchoolBasePage{
     public final void removePermiso(Permiso permiso){
         getPermisos().remove(permiso);
     }
-    
-    /**
-     * Las posteriores llamadas para hacer render de esta pagina se manda a llamar a este metodo.
-     * {@inheritsDoc}
-     */
-    @Override
-    public void beginPageRender() {
-        if(!isUserInRole(getUsuario())){
-            throw new PageRedirectException(getHomePage());
-        }
-        super.beginPageRender();
-    }
 
-    /**
-     * La primera vez que hace render de la pagina se manda a llamar a este metodo.
-     * {@inheritsDoc}
-     */    
     @Override
-    protected void firePageBeginRender() {
+    public void pageBeginRender(PageEvent pageEvent) {
         if(!isUserInRole(getUsuario())){
             throw new PageRedirectException(getHomePage());
         }
-        super.firePageBeginRender();
     }
 }
