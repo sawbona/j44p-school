@@ -24,7 +24,6 @@
     <property name="hibernate.show_sql">true</property>
     <!--
     -->
-    <mapping class="mx.com.j44p.school.modelo.mapped.Permiso"/>
     <mapping class="mx.com.j44p.school.modelo.mapped.UsuarioSimple"/>
     <mapping class="mx.com.j44p.school.modelo.mapped.PersonaSimple"/>
     <mapping class="mx.com.j44p.school.modelo.Profesor"/>

@@ -7,9 +7,9 @@
   <version>1.0-SNAPSHOT</version>
   <name>School - Modelo</name>
   <parent>
-      <groupId>mx.com.j44p</groupId>
-      <artifactId>school</artifactId>
-      <version>1.0-SNAPSHOT</version>
+    <groupId>mx.com.j44p</groupId>
+    <artifactId>school</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
   <build>
     <extensions>

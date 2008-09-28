@@ -1,8 +1,6 @@
 package mx.com.j44p.school.logica;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,7 +15,7 @@ public class SchoolBaseTest
      */
     private static final String[] CONTEXTOS = {
         "schoolModeloApplicationContext.xml",
-        "schoolLogicaApplicationContext.xml"};
+        "schoolModeloApplicationContext1.xml"};
     
     /**
      * El contexto de Spring.

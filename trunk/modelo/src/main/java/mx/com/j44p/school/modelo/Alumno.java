@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import mx.com.j44p.school.modelo.mapped.AbstractEntidad;
-import mx.com.j44p.school.modelo.mapped.Permiso;
+import mx.com.j44p.school.modelo.enumeraciones.Permiso;
 import mx.com.j44p.school.modelo.mapped.Persona;
 import mx.com.j44p.school.modelo.mapped.PersonaSimple;
 import mx.com.j44p.school.modelo.mapped.Usuario;
@@ -99,7 +99,7 @@ public class Alumno extends AbstractEntidad implements Usuario, Persona {
     }
 
     @Override
-    public void setPermisos(List<Permiso> permisos) {
+    public void setPermisos(List<String> permisos) {
         usuario.setPermisos(permisos);
     }
 
@@ -114,7 +114,7 @@ public class Alumno extends AbstractEntidad implements Usuario, Persona {
     }
 
     @Override
-    public void removePermiso(Permiso permiso) {
+    public void removePermiso(String permiso) {
         usuario.removePermiso(permiso);
     }
 
@@ -126,7 +126,7 @@ public class Alumno extends AbstractEntidad implements Usuario, Persona {
 
     @Transient
     @Override
-    public List<Permiso> getPermisos() {
+    public List<String> getPermisos() {
         return usuario.getPermisos();
     }
 
@@ -143,7 +143,7 @@ public class Alumno extends AbstractEntidad implements Usuario, Persona {
     }
 
     @Override
-    public void addPermiso(Permiso permiso) {
+    public void addPermiso(String permiso) {
         usuario.addPermiso(permiso);
     }
 

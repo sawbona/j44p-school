@@ -67,19 +67,19 @@ public interface Usuario {
      * Un rol sirve para manejar los permisos que tendra el usuario dentro del sistema.
      * @return
      */
-    List<Permiso> getPermisos();
+    List<String> getPermisos();
 
-    void setPermisos(List<Permiso> permisos);
+    void setPermisos(List<String> permisos);
     
     /**
      * Agrega un rol al usuario.
      * @param rol
      */
-    void addPermiso(Permiso permiso);
+    void addPermiso(String permiso);
     
     /**
      * Remueve un rol del usuario.
      * @param rol
      */
-    void removePermiso(Permiso permiso); 
+    void removePermiso(String permiso); 
 }
