@@ -7,11 +7,12 @@ package mx.com.j44p.school.modelo.mapped;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.CollectionOfElements;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Implementacion basica de un {@see Usuario} utiilizada para realizar composicion para
@@ -45,7 +46,7 @@ public final class UsuarioSimple extends AbstractEntidad implements Usuario{
      /**
       * Lista de permisos.
       */
-    private List<Permiso> permisos;
+    private List<String> permisos;
     
     /**
      * {@inheritsDoc}
@@ -100,11 +101,12 @@ public final class UsuarioSimple extends AbstractEntidad implements Usuario{
     /**
      * {@inheritsDoc}
      */
-    @ManyToMany(cascade=CascadeType.ALL)
+    @CollectionOfElements
     @Override
-    public List<Permiso> getPermisos() {
+    @LazyCollection(LazyCollectionOption.FALSE)
+    public List<String> getPermisos() {
         if(permisos == null){
-            permisos = new ArrayList<Permiso>();
+            permisos = new ArrayList<String>();
         }
         return permisos;
     }
@@ -113,7 +115,7 @@ public final class UsuarioSimple extends AbstractEntidad implements Usuario{
      * {@inheritsDoc}
      */
     @Override
-    public void setPermisos(List<Permiso> permisos) {
+    public void setPermisos(List<String> permisos) {
         this.permisos = permisos;
     }
 
@@ -121,7 +123,7 @@ public final class UsuarioSimple extends AbstractEntidad implements Usuario{
      * {@inheritsDoc}
      */
     @Override
-    public void addPermiso(Permiso permiso) {
+    public void addPermiso(String permiso) {
         getPermisos().add(permiso);
     }
 
@@ -129,7 +131,7 @@ public final class UsuarioSimple extends AbstractEntidad implements Usuario{
      * {@inheritsDoc}
      */
     @Override
-    public void removePermiso(Permiso permiso) {
+    public void removePermiso(String permiso) {
         getPermisos().remove(permiso);
     }
 

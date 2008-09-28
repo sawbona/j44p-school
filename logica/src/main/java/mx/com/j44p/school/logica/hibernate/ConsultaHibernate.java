@@ -44,6 +44,31 @@ public class ConsultaHibernate implements Consulta{
         this.template = template;
     }
 
+    /**
+     * Encuentra un usuario dado un username. Si no existe dicho usuario regresara <code>null</code>
+     * 
+     * @param username El nombre de usuario por el que vamos a buscar.
+     * @return El usuario asociado por el que estamos buscando. <code>null</code> en caso
+     * de no encontrar dicho usuario.
+     */
+    @Override
+    public Usuario findByUsername(String username) {
+        usuario.setUsername(username);
+        List<Usuario> usuarios = template.findByExample(usuario);
+        if(usuarios == null || (usuarios.size() == 0)){
+            return null;
+        }
+        return usuarios.get(0);
+    }
+
+    /**
+     * Verifica que dado un nombre de usuario y un password correspondan a los almacenados en la
+     * base de datos.
+     * @param username El nombre de usuario a validar.
+     * @param password El password a validar.
+     * @return Un booleano que indica si los parametros coinciden con los guardados en la base
+     * de datos.
+     */
     @Override
     public boolean valida(String username, String password) {
         usuario.setUsername(username);
@@ -55,16 +80,6 @@ public class ConsultaHibernate implements Consulta{
             return true;
         }
         return false;
-    }
-
-    @Override
-    public Usuario findByUsername(String username) {
-        usuario.setUsername(username);
-        List<Usuario> usuarios = template.findByExample(usuario);
-        if(usuarios == null || (usuarios.size() == 0)){
-            return null;
-        }
-        return usuarios.get(0);
     }
 
     @Override

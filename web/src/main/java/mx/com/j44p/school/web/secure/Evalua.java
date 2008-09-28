@@ -13,38 +13,32 @@ import mx.com.j44p.school.logica.EvaluaExamen;
 import mx.com.j44p.school.modelo.Alumno;
 import mx.com.j44p.school.modelo.EvaluacionExamen;
 import mx.com.j44p.school.modelo.Examen;
-import mx.com.j44p.school.modelo.PermisoBasico;
 import mx.com.j44p.school.modelo.Pregunta;
-import mx.com.j44p.school.modelo.mapped.Permiso;
+import mx.com.j44p.school.modelo.enumeraciones.Permiso;
 import mx.com.j44p.school.modelo.mapped.Usuario;
-import mx.com.j44p.school.web.Home;
+import org.apache.log4j.Logger;
 import org.apache.tapestry.IPage;
-import org.apache.tapestry.annotations.InjectPage;
-import org.apache.tapestry.event.PageDetachListener;
-import org.apache.tapestry.event.PageEvent;
 
 /**
  * Clase para representar el momento en que un alumno esta contestanto un examen.
  * @author jaap
  */
-public abstract class Evalua extends SecureBasePage implements PageDetachListener{
+public abstract class Evalua extends SecureBasePage {
 
+    /**
+     * Logger de la clase.
+     */
+    private static Logger logger = Logger.getLogger(Evalua.class);
+    
     /**
      * Lista de permisos de la pagina.
      */
-    private static final List<Permiso> permisos = new ArrayList<Permiso>();
+    private static final List<String> permisos = new ArrayList<String>();
     
     static{
-        permisos.add(PermisoBasico.ADMINISTRADOR);
-        permisos.add(PermisoBasico.ALUMNO);
+        permisos.add(Permiso.ADMINISTRADOR.name());
+        permisos.add(Permiso.ALUMNO.name());
     }
-    
-    @InjectPage("Home")
-    @Override
-    public abstract Home getHomePage();
-    
-    @InjectPage("secure/Evalua")
-    public abstract Evalua getEvaluaPage();
     
     /**
      * Entero que sirve para llevar la cuenta de que pregunta se esta contestanto.
@@ -122,35 +116,27 @@ public abstract class Evalua extends SecureBasePage implements PageDetachListene
         this.opcionSeleccionada = opcionSeleccionada;
     }
     
-    
-    
     public Usuario getNombre(){
         return getUsuario();
-    }
-    
-    /**
-     * Metodo llamado cuando la pagina regresa al pool de tapestry.
-     * @param pageEvent
-     */
-    @Override
-    public void pageDetached(PageEvent pageEvent) {
     }
 
     @Override
     public boolean isUserInRole(Usuario usuario) {
         if(usuario == null){
+            logger.debug("El usuario es nulo en Evalua.java");
             return false;
         }
-        for(Permiso permiso : usuario.getPermisos()){
+        for(String permiso : usuario.getPermisos()){
             if(getPermisos().contains(permiso)){
                 return true;
             }
         }
+        logger.debug("El usuario es nulo en Evalua.java");
         return false;
     }
     
     @Override
-    public List<Permiso> getPermisos(){
+    public List<String> getPermisos(){
         return permisos;
     }
     
@@ -188,17 +174,6 @@ public abstract class Evalua extends SecureBasePage implements PageDetachListene
         evaluacionExamen.setExamen(examen);
         
         evaluaExamen.setEvaluacionExamen(evaluacionExamen);
-    }
-    
-    /**
-     * Metodo llamado cuando se preciosa el link Home en la pagina html.
-     * @return Una referencia a la pagina Home
-     */
-    public IPage onHomeDirectLink(){
-        Home home = getHomePage();
-        home.setUsername(evaluaExamen.getEvaluacionExamen().getAlumno().toString());
-        home.setUsuario(getUsuario());
-        return getHomePage();
     }
     
     /**

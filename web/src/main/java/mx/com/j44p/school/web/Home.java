@@ -6,32 +6,23 @@
 package mx.com.j44p.school.web;
 
 import mx.com.j44p.school.logica.Consulta;
-import mx.com.j44p.school.modelo.Alumno;
-import mx.com.j44p.school.modelo.PermisoBasico;
-import mx.com.j44p.school.modelo.mapped.Permiso;
+import mx.com.j44p.school.modelo.enumeraciones.Permiso;
+import mx.com.j44p.school.modelo.mapped.Usuario;
 import mx.com.j44p.school.web.secure.Evalua;
 import mx.com.j44p.school.web.basic.SchoolBasePage;
 import mx.com.j44p.school.web.secure.AdministraUsuarios;
 import org.apache.tapestry.IPage;
 import org.apache.tapestry.annotations.InitialValue;
-import org.apache.tapestry.annotations.InjectPage;
-import org.springframework.orm.hibernate3.HibernateTemplate;
+import com.javaforge.tapestry.spring.annotations.InjectSpring;
 
 /**
  * Pagina Home.
  * @author jaap
  */
 public abstract class Home extends SchoolBasePage{
-
-    /**
-     * Referencia a la pagina Evalua.
-     * @return
-     */
-    @InjectPage("secure/Evalua")
-    public abstract Evalua getEvaluaPage();
     
-    @InjectPage("secure/AdministraUsuarios")
-    public abstract AdministraUsuarios getAdministraUsuariosPage();
+    @InjectSpring("consultaHibernate")
+    public abstract Consulta getConsulta();
     
     /**
      * Obtiene el nombre del usuario.
@@ -57,31 +48,21 @@ public abstract class Home extends SchoolBasePage{
      * pagina.
      */
     public IPage onInicia(){
-        Evalua evalua = getEvaluaPage();
-        
-        Alumno usuario = new Alumno();
-        usuario.setPrimerNombre("Carlos");
-        usuario.setSegundoNombre("Jacob");
-        usuario.setPrimerApellido("Lobaco");
-        usuario.setSegundoApellido("Beltran");
-        usuario.setEmail("sawbona@gmail.com");
-        usuario.setPassword("password");
-        
-        Permiso permiso = PermisoBasico.ADMINISTRADOR;
-        usuario.addPermiso(permiso);
-        HibernateTemplate template = (HibernateTemplate) getApplicationContext().getBean("hibernateTemplate");
-        for(String nombre: getApplicationContext().getBeanDefinitionNames()){
-            System.out.println(nombre);
+        Consulta consulta = getConsulta();
+        if (!consulta.valida(getUsername(), getPassword())) {
+            setUsuario(null);
+            return null;
         }
-        Consulta consulta = (Consulta) getApplicationContext().getBean("consultaHibernate");
-        template.saveOrUpdate(usuario);
+        Usuario usuario = consulta.findByUsername(getUsername());
+        for(String permiso: usuario.getPermisos()){
+            if(permiso.equals(Permiso.ADMINISTRADOR.name())){
+                AdministraUsuarios administraUsuarios = getAdministraUsuariosPage();
+                administraUsuarios.setUsuario(usuario);
+                return administraUsuarios;
+            }
+        }
+        Evalua evalua = getEvaluaPage();
         evalua.setUsuario(usuario);
-        return getEvaluaPage();
-    }
-    
-    public IPage onAdministraUsuariosDirectLink(){
-        AdministraUsuarios administraUsuarios = getAdministraUsuariosPage();
-        administraUsuarios.setUsuario(getUsuario());
-        return administraUsuarios;
+        return evalua;
     }
 }

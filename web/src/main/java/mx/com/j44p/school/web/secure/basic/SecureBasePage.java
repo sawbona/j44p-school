@@ -6,12 +6,10 @@
 package mx.com.j44p.school.web.secure.basic;
 
 import java.util.List;
-import mx.com.j44p.school.modelo.mapped.Permiso;
+import mx.com.j44p.school.modelo.enumeraciones.Permiso;
 import mx.com.j44p.school.modelo.mapped.Usuario;
-import mx.com.j44p.school.web.Home;
 import mx.com.j44p.school.web.basic.SchoolBasePage;
 import org.apache.tapestry.PageRedirectException;
-import org.apache.tapestry.annotations.InjectPage;
 import org.apache.tapestry.event.PageBeginRenderListener;
 import org.apache.tapestry.event.PageEvent;
 
@@ -20,13 +18,6 @@ import org.apache.tapestry.event.PageEvent;
  * @author jaap
  */
 public abstract class SecureBasePage extends SchoolBasePage implements PageBeginRenderListener{
-    
-    /**
-     * Referencia a la pagina Home
-     * @return Una referencia a la pagina Home.
-     */
-    @InjectPage("Home")
-    public abstract Home getHomePage();
     
     /**
      * Metodo que todas las paginas seguras deben implementar.
@@ -40,13 +31,13 @@ public abstract class SecureBasePage extends SchoolBasePage implements PageBegin
      * Obtiene la lista de permisos aceptada por una pagina.
      * @return Una lista de permisos aceptada por la pagina.
      */
-    public abstract List<Permiso> getPermisos();
+    public abstract List<String> getPermisos();
     
     /**
      * Las paginas deben poder agregar un permiso a su lista de permisos.
      * @param permiso El nuevo permiso que una pagina puede aceptar.
      */
-    public final void addPermiso(Permiso permiso){
+    public final void addPermiso(String permiso){
         getPermisos().add(permiso);
     }
     

@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import mx.com.j44p.school.modelo.Examen;
 import mx.com.j44p.school.modelo.Pregunta;
 import mx.com.j44p.school.modelo.Seccion;
-import mx.com.j44p.school.modelo.util.TipoSeccion;
+import mx.com.j44p.school.modelo.enumeraciones.TipoSeccion;
 
 /**
  *

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import mx.com.j44p.school.modelo.util.TipoSeccion;
+import mx.com.j44p.school.modelo.enumeraciones.TipoSeccion;
 
 /**
  * Secciones que conforman a un examen.
